@@ -28,7 +28,7 @@ public class EmailControllerLogic {
 	 * 
 	 * @throws MessagingException
 	 */
-	@Scheduled(cron = "*/10 * * * *")
+	@Scheduled(cron = "0 0/1 * 1/1 * ? *")
 	public void getAllDetails() throws MessagingException {
 		restTemplate = new RestTemplate();
 		ResponseEntity<List<GreetingDetails>> responseDetails = restTemplate.exchange(
