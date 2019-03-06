@@ -30,27 +30,20 @@ public class EmailControllerLogic {
 	 */
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void getAllDetails() throws MessagingException {
+		
 		restTemplate = new RestTemplate();
 		ResponseEntity<List<GreetingDetails>> responseDetails = restTemplate.exchange(
-				"https://heroku-greeting-sender.herokuapp.com/getAllDetails", HttpMethod.GET, null,
+				"https://heroku-greeting-sender.herokuapp.com/getAllEvents", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<GreetingDetails>>() {
 				});
-		System.out.println("Local Date= " + LocalDate.now());
 		List<GreetingDetails> greetingDetails = responseDetails.getBody();
 		greetingDetails.forEach(list -> {
-			LocalDate tempDate = LocalDate.parse(list.getDate());
-			if (tempDate.getDayOfMonth() == LocalDate.now().getDayOfMonth()
-					&& tempDate.getMonthValue() == LocalDate.now().getMonthValue()) {
 				try {
 					emailSender.sendEmail(list);
-				} catch (Exception e) {
+				} catch (Exception e) {					
 					e.printStackTrace();
 				}
-
-			}
-
 		});
-		System.out.println(greetingDetails.toString());
 
 	}
 
