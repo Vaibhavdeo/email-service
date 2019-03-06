@@ -19,7 +19,7 @@ public class EmailSender {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 		helper.setTo(details.getMailId());
-		helper.setText(details.getSubject());
+		//helper.setText(details.getSubject());
 		helper.setSubject("Happy"+" " +details.getSubject() + " " + details.getName());
 		sender.send(message);
 
