@@ -28,9 +28,9 @@ public class EmailControllerLogic {
 	 * 
 	 * @throws MessagingException
 	 */
-	@Scheduled(cron = "0 0 11.35 * * *")
+	@Scheduled(cron = "0 0 12 * * *")
 	public void getAllDetails() throws MessagingException {
-		
+		System.out.println("Cron method executed");
 		restTemplate = new RestTemplate();
 		ResponseEntity<List<GreetingDetails>> responseDetails = restTemplate.exchange(
 				"https://heroku-greeting-sender.herokuapp.com/getAllEvents", HttpMethod.GET, null,
