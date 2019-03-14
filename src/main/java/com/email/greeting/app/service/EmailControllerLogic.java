@@ -28,7 +28,7 @@ public class EmailControllerLogic {
 	 * 
 	 * @throws MessagingException
 	 */
-	@Scheduled(cron = "0 0 10 * * ?")
+	@Scheduled(cron = "* */1 * * * *")
 	public void getAllDetails() throws MessagingException {
 		System.out.println("Cron method executed");
 		restTemplate = new RestTemplate();
